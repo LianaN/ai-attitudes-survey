@@ -338,7 +338,8 @@
                         <option value="hs-or-less">High school or less</option>
                         <option value="some-college">Some college</option>
                         <option value="bachelor">Bachelor's degree</option>
-                        <option value="graduate">Graduate degree (Master's, PhD)</option>
+                        <option value="graduate">Graduate degree (Master's)</option>
+                        <option value="phd">Doctoral degree (PhD)</option>
                     </select>
                 </div>
                 
@@ -348,8 +349,12 @@
                     </label>
                     <div class="question-options">
                         <label class="option">
-                            <input type="radio" name="employment" value="employed" required>
-                            <span>Employed (full-time or part-time)</span>
+                            <input type="radio" name="employment" value="employed-full-time" required>
+                            <span>Employed (full-time)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="employment" value="employed-part-time" required>
+                            <span>Employed (part-time)</span>
                         </label>
                         <label class="option">
                             <input type="radio" name="employment" value="self-employed">
