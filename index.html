@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Attitudes & Product Preferences Survey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Google Sans', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-header {
+            background: #673ab7;
+            color: white;
+            padding: 30px 24px;
+            border-top: 10px solid #5e35b1;
+        }
+        
+        .form-header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .form-header p {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .section {
+            padding: 24px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-header {
+            background: #f8f9fa;
+            border-left: 4px solid #673ab7;
+            padding: 16px 20px;
+            margin: -24px -24px 24px -24px;
+        }
+        
+        .section-header h2 {
+            font-size: 18px;
+            color: #202124;
+            margin-bottom: 4px;
+        }
+        
+        .section-header .description {
+            font-size: 14px;
+            color: #5f6368;
+            margin-top: 8px;
+        }
+        
+        .question {
+            margin-bottom: 28px;
+        }
+        
+        .question:last-child {
+            margin-bottom: 0;
+        }
+        
+        .question-label {
+            font-size: 16px;
+            color: #202124;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .required {
+            color: #d93025;
+            margin-left: 4px;
+        }
+        
+        .question-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-left: 4px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #202124;
+            cursor: pointer;
+        }
+        
+        .option:hover {
+            background: #f8f9fa;
+            margin: -4px;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .text-input {
+            width: 100%;
+            max-width: 500px;
+            border: none;
+            border-bottom: 1px solid #dadce0;
+            padding: 8px 0;
+            font-size: 14px;
+            color: #202124;
+            background: transparent;
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-bottom: 2px solid #673ab7;
+        }
+        
+        .short-answer {
+            max-width: 300px;
+        }
+        
+        .dropdown {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px 12px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #202124;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .dropdown:focus {
+            outline: none;
+            border-color: #673ab7;
+        }
+        
+        .info-box {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #185abc;
+            border-radius: 0 4px 4px 0;
+            line-height: 1.6;
+        }
+        
+        .success-box {
+            background: #e6f4ea;
+            border-left: 4px solid #1e8e3e;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #137333;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .error-box {
+            background: #fce8e6;
+            border-left: 4px solid #d93025;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #c5221f;
+            border-radius: 0 4px 4px 0;
+            display: none;
+        }
+        
+        .submit-section {
+            padding: 24px;
+            text-align: center;
+            background: #f8f9fa;
+        }
+        
+        .submit-button {
+            background: #673ab7;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.3s;
+        }
+        
+        .submit-button:hover:not(:disabled) {
+            background: #5e35b1;
+        }
+        
+        .submit-button:disabled {
+            background: #dadce0;
+            cursor: not-allowed;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #673ab7;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .prolific-info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #856404;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .readonly-field {
+            background: #f8f9fa;
+            color: #5f6368;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>AI Attitudes & Product Preferences Survey</h1>
+            <p>This brief survey explores your attitudes toward artificial intelligence and technology, and gathers your feedback on a new product concept. Your responses will help us understand consumer perspectives and preferences. All responses are confidential and will be used solely for research.</p>
+        </div>
+        
+        <form id="surveyForm">
+            <!-- SECTION 1: Basic Demographics -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Section 1: About You</h2>
+                    <div class="description">Basic demographic information.</div>
+                </div>
+                
+                <div class="prolific-info" id="prolificInfo" style="display: none;">
+                    ✓ Prolific participant detected. Your ID has been automatically captured.
+                </div>
+                
+                <div class="question">
+                    <label class="question-label" for="prolificId">
+                        Prolific ID <span class="required">*</span>
+                    </label>
+                    <input type="text" 
+                           id="prolificId" 
+                           name="prolificId" 
+                           class="text-input short-answer readonly-field" 
+                           placeholder="Auto-filled from URL" 
+                           readonly 
+                           required>
+                    <input type="hidden" id="studyId" name="studyId">
+                    <input type="hidden" id="sessionId" name="sessionId">
+                </div>
+                
+                <div class="question">
+                    <label class="question-label" for="age">
+                        What is your age? <span class="required">*</span>
+                    </label>
+                    <input type="number" 
+                           id="age" 
+                           name="age" 
+                           class="text-input short-answer" 
+                           placeholder="Your answer" 
+                           min="18" 
+                           max="120" 
+                           required>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        What is your gender? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="gender" value="male" required>
+                            <span>Male</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="gender" value="female">
+                            <span>Female</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="gender" value="non-binary">
+                            <span>Non-binary</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="gender" value="prefer-not-to-say">
+                            <span>Prefer not to say</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label" for="education">
+                        What is your highest level of education? <span class="required">*</span>
+                    </label>
+                    <select id="education" name="education" class="dropdown" required>
+                        <option value="">Choose</option>
+                        <option value="hs-or-less">High school or less</option>
+                        <option value="some-college">Some college</option>
+                        <option value="bachelor">Bachelor's degree</option>
+                        <option value="graduate">Graduate degree (Master's, PhD)</option>
+                    </select>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        What is your current employment status? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="employment" value="employed" required>
+                            <span>Employed (full-time or part-time)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="employment" value="self-employed">
+                            <span>Self-employed</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="employment" value="student">
+                            <span>Student</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="employment" value="unemployed">
+                            <span>Unemployed</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="employment" value="retired">
+                            <span>Retired</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 2: Financial & Life Context -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Section 2: Financial & Life Context</h2>
+                    <div class="description">Understanding your current situation.</div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Do you think you will be better off or worse off financially in a year from now? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="financialOutlook" value="better" required>
+                            <span>Better off</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialOutlook" value="same">
+                            <span>About the same</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialOutlook" value="worse">
+                            <span>Worse off</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialOutlook" value="unsure">
+                            <span>Don't know</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        What are your main sources of stress right now? (Select all that apply) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="checkbox" name="stressSources" value="money">
+                            <span>Money / finances</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="stressSources" value="work">
+                            <span>Work / career</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="stressSources" value="health">
+                            <span>Health (self or family)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="stressSources" value="relationships">
+                            <span>Relationships</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="stressSources" value="time">
+                            <span>Time pressure / too much to do</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="stressSources" value="future">
+                            <span>Uncertainty about the future</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="stressSources" value="none">
+                            <span>Nothing significant right now</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        How would you describe your general attitude toward risk? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="riskTolerance" value="very-low" required>
+                            <span>Very cautious - I avoid risk whenever possible</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="riskTolerance" value="low">
+                            <span>Cautious - I prefer safe, proven options</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="riskTolerance" value="medium">
+                            <span>Moderate - I balance risk and safety</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="riskTolerance" value="high">
+                            <span>Adventurous - I'm comfortable with risk for potential reward</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="riskTolerance" value="very-high">
+                            <span>Very adventurous - I actively seek out new opportunities</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 3: Technology & AI Attitudes -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Section 3: Technology & AI Attitudes</h2>
+                    <div class="description">Your views on technology and artificial intelligence.</div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Which statement best describes your relationship with technology? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="techRelationship" value="enthusiast" required>
+                            <span>I love technology and actively seek out the latest innovations</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="techRelationship" value="pragmatist">
+                            <span>I use technology when it makes my life easier</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="techRelationship" value="reluctant">
+                            <span>I use technology only when necessary</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="techRelationship" value="avoider">
+                            <span>I prefer traditional ways and avoid new technology when possible</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Have you used AI tools like ChatGPT, Claude, or other AI assistants? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="aiUsage" value="regular" required>
+                            <span>Yes, I use them regularly (weekly or more)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aiUsage" value="occasional">
+                            <span>Yes, I use them occasionally</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aiUsage" value="tried">
+                            <span>I've tried them a few times</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aiUsage" value="never">
+                            <span>No, I've never used them</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Which statements about AI do you agree with? (Select all that apply) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="checkbox" name="aiAttitudes" value="helpful">
+                            <span>AI can be helpful for everyday tasks</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiAttitudes" value="job-threat">
+                            <span>I'm concerned about AI's impact on jobs</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiAttitudes" value="privacy-concern">
+                            <span>I worry about privacy when using AI</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiAttitudes" value="trust-issue">
+                            <span>I don't trust AI to make important decisions</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiAttitudes" value="exciting">
+                            <span>I'm excited about AI's potential</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiAttitudes" value="too-fast">
+                            <span>AI development is moving too fast</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiAttitudes" value="augment">
+                            <span>AI should augment humans, not replace them</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiAttitudes" value="none">
+                            <span>None of the above</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        How comfortable would you be sharing your personal financial data with an AI system? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="dataComfort" value="very-comfortable" required>
+                            <span>Very comfortable - I trust AI systems with my data</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="dataComfort" value="somewhat-comfortable">
+                            <span>Somewhat comfortable - if it provides value</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="dataComfort" value="neutral">
+                            <span>Neutral - depends on the specific system</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="dataComfort" value="uncomfortable">
+                            <span>Uncomfortable - I prefer to keep my data private</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="dataComfort" value="very-uncomfortable">
+                            <span>Very uncomfortable - I would never share financial data with AI</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 4: Shopping Behavior -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Section 4: Shopping Behavior</h2>
+                    <div class="description">How you make purchasing decisions.</div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        When shopping online, what influences your decisions most? (Select up to 3) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="checkbox" name="shoppingInfluences" value="price">
+                            <span>Best price / deals</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="shoppingInfluences" value="reviews">
+                            <span>Customer reviews from real people</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="shoppingInfluences" value="recommendations">
+                            <span>Personalized recommendations</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="shoppingInfluences" value="brand">
+                            <span>Brand reputation / loyalty</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="shoppingInfluences" value="convenience">
+                            <span>Convenience / speed</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="shoppingInfluences" value="research">
+                            <span>My own research and comparison</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Have you used AI-powered features while shopping? (Select all that apply) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="checkbox" name="aiShoppingUse" value="chatbots">
+                            <span>Chatbots for customer service</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiShoppingUse" value="recommendations">
+                            <span>AI product recommendations</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiShoppingUse" value="search">
+                            <span>AI-powered search</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiShoppingUse" value="virtual-tryon">
+                            <span>Virtual try-on or AR preview</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiShoppingUse" value="voice">
+                            <span>Voice shopping assistants</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiShoppingUse" value="none">
+                            <span>None - I avoid AI shopping features</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="aiShoppingUse" value="unsure">
+                            <span>Not sure if I've used AI features</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 5: Product Feedback -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Section 5: Product Feedback</h2>
+                    <div class="description">Your feedback on a new product concept.</div>
+                </div>
+                
+                <div class="info-box">
+                    📱 <strong>Product Concept: AI Personal Finance Coach</strong><br><br>
+                    An AI-powered mobile app that helps you manage your finances more effectively. The app would:<br>
+                    • Analyze your bank transactions automatically to understand your spending patterns<br>
+                    • Predict upcoming financial shortfalls or opportunities before they happen<br>
+                    • Provide personalized coaching and advice based on your goals and financial psychology<br>
+                    • Create custom budgets that adapt automatically to your life changes<br>
+                    • Help you work toward specific financial goals (saving for a house, paying off debt, building emergency fund)
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        How likely would you be to pay for an AI-powered personal finance coach app that analyzes your spending and provides personalized financial guidance? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="financeAppIntent" value="very-likely" required>
+                            <span>Very likely</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financeAppIntent" value="somewhat-likely">
+                            <span>Somewhat likely</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financeAppIntent" value="neither">
+                            <span>Neither likely nor unlikely</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financeAppIntent" value="somewhat-unlikely">
+                            <span>Somewhat unlikely</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financeAppIntent" value="very-unlikely">
+                            <span>Very unlikely</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Which THREE features would be most important to you in this app? (Select exactly 3) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="predictive-alerts">
+                            <span>Predictive alerts - warns you about potential overdrafts or bills before they happen</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="automated-savings">
+                            <span>Automated savings - moves money to savings when you can afford it</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="debt-payoff">
+                            <span>Debt payoff strategy - AI creates optimized plan to eliminate debts faster</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="spending-insights">
+                            <span>Spending insights - shows patterns and suggests where to cut back</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="goal-setting">
+                            <span>Goal setting - helps you save for specific life goals (house, holiday, retirement)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="financial-coaching">
+                            <span>Financial coaching - personalized advice based on your psychology and habits</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="bill-negotiation">
+                            <span>Bill negotiation - AI contacts providers to reduce your bills automatically</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="privacy-first">
+                            <span>Privacy first - all data processed on your device, never shared</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeAppFeatures" value="human-advisor">
+                            <span>Human advisor access - option to speak with a real financial expert</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        This app would be a monthly subscription. Please indicate what you would consider each price point below: <span class="required">*</span>
+                    </label>
+                    
+                    <div style="margin-top: 20px;">
+                        <label class="question-label" for="priceTooExpensive" style="font-size: 14px; font-weight: normal;">
+                            a) Too expensive - you would not subscribe
+                        </label>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                            <span style="font-size: 18px;">£</span>
+                            <input type="number" id="priceTooExpensive" name="priceTooExpensive" class="text-input short-answer" placeholder="0.00" min="0" step="0.01" required style="max-width: 120px;">
+                            <span style="color: #5f6368; font-size: 14px;">per month</span>
+                        </div>
+                        
+                        <label class="question-label" for="priceExpensive" style="font-size: 14px; font-weight: normal;">
+                            b) Expensive, but you might subscribe
+                        </label>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                            <span style="font-size: 18px;">£</span>
+                            <input type="number" id="priceExpensive" name="priceExpensive" class="text-input short-answer" placeholder="0.00" min="0" step="0.01" required style="max-width: 120px;">
+                            <span style="color: #5f6368; font-size: 14px;">per month</span>
+                        </div>
+                        
+                        <label class="question-label" for="priceGreatValue" style="font-size: 14px; font-weight: normal;">
+                            c) A great value - you would definitely subscribe
+                        </label>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                            <span style="font-size: 18px;">£</span>
+                            <input type="number" id="priceGreatValue" name="priceGreatValue" class="text-input short-answer" placeholder="0.00" min="0" step="0.01" required style="max-width: 120px;">
+                            <span style="color: #5f6368; font-size: 14px;">per month</span>
+                        </div>
+                        
+                        <label class="question-label" for="priceTooCheap" style="font-size: 14px; font-weight: normal;">
+                            d) Too cheap - you would question its quality
+                        </label>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 18px;">£</span>
+                            <input type="number" id="priceTooCheap" name="priceTooCheap" class="text-input short-answer" placeholder="0.00" min="0" step="0.01" required style="max-width: 120px;">
+                            <span style="color: #5f6368; font-size: 14px;">per month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 6: Consent -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Section 6: Consent</h2>
+                    <div class="description">Please confirm your consent to participate.</div>
+                </div>
+                
+                <div class="info-box">
+                    ⚠️ By submitting this form, you confirm that you have read and understood the study information and consent to participate.
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        <input type="checkbox" name="consent" value="yes" required style="width: auto; margin-right: 8px;">
+                        I consent to participate in this research study <span class="required">*</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="error-box" id="errorBox"></div>
+            
+            <div class="submit-section">
+                <button type="submit" class="submit-button" id="submitBtn">
+                    Submit
+                </button>
+                <div style="margin-top: 16px; font-size: 12px; color: #5f6368;">
+                    Your responses are securely stored and confidential.
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // ==========================================
+        // CONFIGURATION
+        // ==========================================
+        
+        const CONFIG = {
+            completionCode: 'C1234ABC',
+            googleSheetsUrl: 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL',
+            backendUrl: 'https://yourdomain.com/api/submit',
+            submitMethod: 'googleSheets'
+        };
+        
+        // ==========================================
+        // PROLIFIC INTEGRATION
+        // ==========================================
+        
+        function captureUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            const prolificPID = urlParams.get('PROLIFIC_PID');
+            const studyID = urlParams.get('STUDY_ID');
+            const sessionID = urlParams.get('SESSION_ID');
+            
+            if (prolificPID) {
+                document.getElementById('prolificId').value = prolificPID;
+                document.getElementById('studyId').value = studyID || '';
+                document.getElementById('sessionId').value = sessionID || '';
+                document.getElementById('prolificInfo').style.display = 'block';
+            } else {
+                document.getElementById('prolificId').placeholder = 'Enter manually for testing';
+                document.getElementById('prolificId').readOnly = false;
+                document.getElementById('prolificId').classList.remove('readonly-field');
+            }
+        }
+        
+        // ==========================================
+        // FORM SUBMISSION
+        // ==========================================
+        
+        document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate stress sources
+            const stressSources = document.querySelectorAll('input[name="stressSources"]:checked');
+            if (stressSources.length === 0) {
+                showError('Please select at least one source of stress.');
+                return;
+            }
+            
+            // Validate AI attitudes
+            const aiAttitudes = document.querySelectorAll('input[name="aiAttitudes"]:checked');
+            if (aiAttitudes.length === 0) {
+                showError('Please select at least one statement about AI.');
+                return;
+            }
+            
+            // Validate shopping influences (max 3)
+            const shoppingInfluences = document.querySelectorAll('input[name="shoppingInfluences"]:checked');
+            if (shoppingInfluences.length === 0 || shoppingInfluences.length > 3) {
+                showError('Please select 1 to 3 shopping influences.');
+                return;
+            }
+            
+            // Validate AI shopping use
+            const aiShoppingUse = document.querySelectorAll('input[name="aiShoppingUse"]:checked');
+            if (aiShoppingUse.length === 0) {
+                showError('Please select at least one option for AI shopping features.');
+                return;
+            }
+            
+            // Validate finance app features (exactly 3)
+            const financeFeatures = document.querySelectorAll('input[name="financeAppFeatures"]:checked');
+            if (financeFeatures.length !== 3) {
+                showError('Please select exactly 3 features for the AI Personal Finance Coach app.');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Submitting <span class="spinner"></span>';
+            
+            const formData = collectFormData();
+            formData.timestamp = new Date().toISOString();
+            
+            try {
+                if (CONFIG.submitMethod === 'googleSheets') {
+                    await submitToGoogleSheets(formData);
+                } else {
+                    await submitToBackend(formData);
+                }
+                
+                redirectToProlific();
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                showError('An error occurred. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+        
+        // ==========================================
+        // DATA COLLECTION
+        // ==========================================
+        
+        function collectFormData() {
+            const formData = {};
+            
+            const checkboxGroups = [
+                'stressSources', 'aiAttitudes', 'shoppingInfluences',
+                'aiShoppingUse', 'financeAppFeatures'
+            ];
+            
+            checkboxGroups.forEach(group => {
+                formData[group] = [];
+            });
+            
+            const form = document.getElementById('surveyForm');
+            const formElements = form.elements;
+            
+            for (let element of formElements) {
+                if (element.name) {
+                    if (element.type === 'checkbox') {
+                        if (checkboxGroups.includes(element.name)) {
+                            if (element.checked) {
+                                formData[element.name].push(element.value);
+                            }
+                        } else {
+                            formData[element.name] = element.checked ? 'yes' : 'no';
+                        }
+                    } else if (element.type === 'radio') {
+                        if (element.checked) {
+                            formData[element.name] = element.value;
+                        }
+                    } else if (element.type !== 'submit') {
+                        formData[element.name] = element.value;
+                    }
+                }
+            }
+            
+            checkboxGroups.forEach(group => {
+                if (formData[group] && formData[group].length > 0) {
+                    formData[group] = formData[group].join(', ');
+                } else {
+                    formData[group] = '';
+                }
+            });
+            
+            return formData;
+        }
+        
+        // ==========================================
+        // SUBMISSION METHODS
+        // ==========================================
+        
+        async function submitToGoogleSheets(data) {
+            const response = await fetch(CONFIG.googleSheetsUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            return true;
+        }
+        
+        async function submitToBackend(data) {
+            const response = await fetch(CONFIG.backendUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            
+            if (!response.ok) {
+                throw new Error('Submission failed');
+            }
+            
+            return await response.json();
+        }
+        
+        function redirectToProlific() {
+            window.location.href = `https://app.prolific.com/submissions/complete?cc=${CONFIG.completionCode}`;
+        }
+        
+        // ==========================================
+        // ERROR HANDLING
+        // ==========================================
+        
+        function showError(message) {
+            const errorBox = document.getElementById('errorBox');
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+            errorBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            setTimeout(() => {
+                errorBox.style.display = 'none';
+            }, 5000);
+        }
+        
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            captureUrlParams();
+        });
+    </script>
+</body>
+</html>
