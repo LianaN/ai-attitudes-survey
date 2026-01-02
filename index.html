@@ -472,10 +472,335 @@
                 </div>
             </div>
             
-            <!-- SECTION 3: Technology & AI Attitudes -->
+            <!-- SECTION 3: Financial Profile -->
             <div class="section">
                 <div class="section-header">
-                    <h2>Section 3: Technology & AI Attitudes</h2>
+                    <h2>Section 3: Financial Profile</h2>
+                    <div class="description">Understanding your financial situation and habits.</div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        What is your BIGGEST financial challenge right now? (Select one) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="financialChallenge" value="impulse-spending" required>
+                            <span>I spend more than I should on impulse purchases</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialChallenge" value="too-much-debt">
+                            <span>I have too much credit card or loan debt</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialChallenge" value="struggle-to-save">
+                            <span>I struggle to save money regularly</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialChallenge" value="unexpected-bills">
+                            <span>My bills are often higher than I expected</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialChallenge" value="dont-know-spending">
+                            <span>I don't know where my money goes each month</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialChallenge" value="not-on-track">
+                            <span>I'm not on track for retirement/long-term goals</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialChallenge" value="forget-bills">
+                            <span>I forget to pay bills on time</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialChallenge" value="no-challenges">
+                            <span>I have no specific financial challenges right now</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        What is your TOP financial priority for the next 12 months? (Select one) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="pay-off-debt" required>
+                            <span>Pay off credit card or loan debt</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="emergency-fund">
+                            <span>Build an emergency fund (3-6 months expenses)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="major-purchase">
+                            <span>Save for a major purchase (house, car, holiday)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="reduce-expenses">
+                            <span>Reduce monthly expenses/bills</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="retirement-savings">
+                            <span>Increase retirement savings</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="start-investing">
+                            <span>Start investing or grow investments</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="improve-credit">
+                            <span>Improve credit score</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="maintain-current">
+                            <span>Simply maintain current financial situation</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialPriority" value="none">
+                            <span>None of the above</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Which of the following do you currently use to manage your finances? (Select all that apply) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="checkbox" name="financeTools" value="budgeting-app">
+                            <span>Budgeting app (e.g., Mint, YNAB, Emma)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeTools" value="bank-app">
+                            <span>Bank's mobile app with spending insights</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeTools" value="spreadsheet">
+                            <span>Spreadsheet (Excel/Google Sheets)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeTools" value="pen-paper">
+                            <span>Pen and paper tracking</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeTools" value="financial-advisor">
+                            <span>Financial advisor (human)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeTools" value="auto-savings-app">
+                            <span>Automatic savings apps (e.g., Plum, Chip)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeTools" value="dont-track">
+                            <span>I don't actively track my finances</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="financeTools" value="other">
+                            <span>Other</span>
+                        </label>
+                    </div>
+                    <input type="text" name="financeToolsOther" class="text-input" placeholder="If other, please specify" style="margin-top: 12px;">
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Do you currently have any of the following types of debt? (Select all that apply) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="credit-card">
+                            <span>Credit card debt (carrying balance month-to-month)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="student-loans">
+                            <span>Student loans</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="personal-loans">
+                            <span>Personal loans</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="car-loan">
+                            <span>Car loan/finance</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="mortgage">
+                            <span>Mortgage</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="overdraft">
+                            <span>Overdraft that I regularly use</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="bnpl">
+                            <span>Buy now, pay later (Klarna, Clearpay, etc.)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="no-debt">
+                            <span>I have no debt</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="debtStatus" value="prefer-not-say">
+                            <span>Prefer not to say</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        How would you describe your current financial situation? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="financialSituation" value="very-tight" required>
+                            <span>Very tight - I struggle to cover basic expenses</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialSituation" value="tight">
+                            <span>Tight - I can cover expenses but have little left over</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialSituation" value="comfortable">
+                            <span>Comfortable - I can cover expenses and save a bit</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialSituation" value="very-comfortable">
+                            <span>Very comfortable - I can save/invest significantly each month</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="financialSituation" value="prefer-not-say">
+                            <span>Prefer not to say</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Approximately how much do you spend per month on ALL subscriptions/memberships combined? (Netflix, Spotify, gym, apps, etc.) <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="less-than-10" required>
+                            <span>Less than £10</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="10-19">
+                            <span>£10 - £19</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="20-29">
+                            <span>£20 - £29</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="30-49">
+                            <span>£30 - £49</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="50-74">
+                            <span>£50 - £74</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="75-99">
+                            <span>£75 - £99</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="100-plus">
+                            <span>£100 or more</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="no-subscriptions">
+                            <span>I don't have any subscriptions</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="subscriptionSpending" value="not-sure">
+                            <span>Not sure</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        What would you consider a reasonable monthly price for a productivity or utility app (like a budgeting tool, password manager, or cloud storage)? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="reasonableAppPrice" value="up-to-2.99" required>
+                            <span>Up to £2.99</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="reasonableAppPrice" value="3-4.99">
+                            <span>£3 - £4.99</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="reasonableAppPrice" value="5-7.99">
+                            <span>£5 - £7.99</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="reasonableAppPrice" value="8-9.99">
+                            <span>£8 - £9.99</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="reasonableAppPrice" value="10-14.99">
+                            <span>£10 - £14.99</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="reasonableAppPrice" value="15-19.99">
+                            <span>£15 - £19.99</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="reasonableAppPrice" value="20-plus">
+                            <span>£20 or more</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="reasonableAppPrice" value="wouldnt-pay">
+                            <span>I wouldn't pay for such apps</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">
+                        Which statement best describes your approach to spending money? <span class="required">*</span>
+                    </label>
+                    <div class="question-options">
+                        <label class="option">
+                            <input type="radio" name="spendingPersonality" value="very-frugal" required>
+                            <span>Very frugal - I always look for the cheapest option</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="spendingPersonality" value="price-conscious">
+                            <span>Price-conscious - I compare prices but will pay more for quality</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="spendingPersonality" value="balanced">
+                            <span>Balanced - I consider both price and value</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="spendingPersonality" value="quality-focused">
+                            <span>Quality-focused - I'm willing to pay more for better products/services</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="spendingPersonality" value="convenience-focused">
+                            <span>Convenience-focused - I prioritize ease over price</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="spendingPersonality" value="dont-think-much">
+                            <span>I don't think much about spending</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="spendingPersonality" value="prefer-not-say">
+                            <span>Prefer not to say</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 4: Technology & AI Attitudes -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Section 4: Technology & AI Attitudes</h2>
                     <div class="description">Your views on technology and artificial intelligence.</div>
                 </div>
                 
@@ -596,10 +921,10 @@
                 </div>
             </div>
             
-            <!-- SECTION 4: Shopping Behavior -->
+            <!-- SECTION 5: Shopping Behavior -->
             <div class="section">
                 <div class="section-header">
-                    <h2>Section 4: Shopping Behavior</h2>
+                    <h2>Section 5: Shopping Behavior</h2>
                     <div class="description">How you make purchasing decisions.</div>
                 </div>
                 
@@ -672,10 +997,10 @@
                 </div>
             </div>
             
-            <!-- SECTION 5: Product Feedback -->
+            <!-- SECTION 6: Product Feedback -->
             <div class="section">
                 <div class="section-header">
-                    <h2>Section 5: Product Feedback</h2>
+                    <h2>Section 6: Product Feedback</h2>
                     <div class="description">Your feedback on a new product concept.</div>
                 </div>
                 
@@ -806,10 +1131,10 @@
                 </div>
             </div>
             
-            <!-- SECTION 6: Consent -->
+            <!-- SECTION 7: Consent -->
             <div class="section">
                 <div class="section-header">
-                    <h2>Section 6: Consent</h2>
+                    <h2>Section 7: Consent</h2>
                     <div class="description">Please confirm your consent to participate.</div>
                 </div>
                 
@@ -887,6 +1212,20 @@
                 return;
             }
             
+            // Validate finance tools
+            const financeTools = document.querySelectorAll('input[name="financeTools"]:checked');
+            if (financeTools.length === 0) {
+                showError('Please select at least one option for how you manage your finances.');
+                return;
+            }
+            
+            // Validate debt status
+            const debtStatus = document.querySelectorAll('input[name="debtStatus"]:checked');
+            if (debtStatus.length === 0) {
+                showError('Please select at least one option for your debt status.');
+                return;
+            }
+            
             // Validate AI attitudes
             const aiAttitudes = document.querySelectorAll('input[name="aiAttitudes"]:checked');
             if (aiAttitudes.length === 0) {
@@ -949,7 +1288,7 @@
             
             const checkboxGroups = [
                 'stressSources', 'aiAttitudes', 'shoppingInfluences',
-                'aiShoppingUse', 'financeAppFeatures'
+                'aiShoppingUse', 'financeAppFeatures', 'financeTools', 'debtStatus'
             ];
             
             checkboxGroups.forEach(group => {
